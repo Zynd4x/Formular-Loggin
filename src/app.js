@@ -9,6 +9,7 @@ document.querySelector('#creatAccount-form form').addEventListener('submit', asy
     try {
         const response = await fetch('http://localhost:3000/api/register', {
             method: 'POST',
+            credentials: 'include', // Damit Cookies gesendet werden
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, email, password })
         });
@@ -30,6 +31,7 @@ document.querySelector('#logIn-form form').addEventListener('submit', async (e) 
     try {
         const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
+            credentials: 'include', // Damit Cookies gesendet werden
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
@@ -45,3 +47,8 @@ document.querySelector('#logIn-form form').addEventListener('submit', async (e) 
         alert('Fehler bei der Verbindung zum Server.');
     }
 });
+
+import routes from "./routes/authRoutes.js";
+
+const app = express();
+app.use("/api", routes);
