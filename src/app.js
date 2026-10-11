@@ -51,4 +51,4 @@ document.querySelector('#logIn-form form').addEventListener('submit', async (e) 
 import routes from "./routes/authRoutes.js";
 
 const app = express();
-app.use("/api", routes);
+app.use(cookieParser());

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const protect = (req, res, next) => {
 
     //1. Authorization-Header auslesen
-    const authHeader = req.headers.authorization;
+    const authHeader = req.cookies.token;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'Unauthorized' });
