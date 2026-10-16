@@ -1,54 +1,24 @@
-// Registrierung (Sign Up)
-document.querySelector('#creatAccount-form form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-
-    try {
-        const response = await fetch('http://localhost:3000/api/register', {
-            method: 'POST',
-            credentials: 'include', // Damit Cookies gesendet werden
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, email, password })
-        });
-
-        const data = await response.json();
-        alert(data.message);
-    } catch (error) {
-        alert('Fehler bei der Verbindung zum Server.');
-    }
-})
-
-//Login (Sign In)
-document.querySelector('#logIn-form form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-
-    try {
-        const response = await fetch('http://localhost:3000/api/login', {
-            method: 'POST',
-            credentials: 'include', // Damit Cookies gesendet werden
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            localStorage.setItem('token', data.token);
-            window.location.href = '/dashboard.html';
-        } else {
-            alert(data.message || 'Login Fehlgeschlagen');
-        }
-    } catch (error) {
-        alert('Fehler bei der Verbindung zum Server.');
-    }
-});
-
-import routes from "./routes/authRoutes.js";
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-app.use(cookieParser());
+
+//1. Middlewares
+app.use(cores({
+    origin: 'http://localhost:3000', //Frontend-URL
+    credentials: true // Erlaubt das Senden von Cookies über CORS
+}));
+
+app.use(express.json()); // Parst JSON-Anfragen im Request-Body
+app.use(cookieParser()); // Parst Cookies in req.cookies
+
+//2. Statische Frontend-Dateien bereitstellen (public-Ordner)
+app.use(express.static(path.join(__dirname, '../public')));
+
+//3. API-Routen einbinden
+app.use('/api', authRoutes);
+
+module.exports = app;

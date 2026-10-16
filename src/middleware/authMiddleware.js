@@ -2,15 +2,13 @@ const jwt = require('jsonwebtoken');
 
 const protect = (req, res, next) => {
 
-    //1. Authorization-Header auslesen
-    const authHeader = req.cookies.token;
+    //1. Token direkt aus Cookies auslesen
+    const token = req.cookies.token;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Unauthorized' });
+    //2. Prüfen, ob das Cookie überhaupt exestiert
+    if (!token) {
+        return res.status(401).json({ message: 'Zugriff verweigert. Kein Token vorhanden.' });
     }
-
-    // 2. Token isolieren (trennt "Bearer" vom eigentlichen Token)
-    const token = authHeader.split(' ')[1];
 
     try {
         // 3. Token mit dem geheimen Schlüssel verifizieren
@@ -20,10 +18,8 @@ const protect = (req, res, next) => {
         // 5. Weiter zur nächsten Middleware oder Route
         next();
     } catch (error) {
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.status(401).json({ message: 'Ungültiger oder abgelaufener Token!' });
     }
-
-    
 };
 
 module.exports = protect;

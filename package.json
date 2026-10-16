@@ -14,9 +14,10 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "body-parser": "^2.3.0",
-    "chokidar": "^3.6.0",
+    "chokidar": "^5.0.0",
     "content-disposition": "^1.1.0",
     "content-type": "^2.1.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^18.0.5",
     "express": "^5.2.1",
@@ -39,9 +40,10 @@
     "type-is": "^2.1.0"
   },
   "allowScripts": {
-    "bcrypt@6.0.0": true
+    "bcrypt@6.0.0": true,
+    "nodemon@1.19.4": true
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^1.14.10"
   }
 }
