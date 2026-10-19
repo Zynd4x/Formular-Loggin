@@ -30,6 +30,7 @@
     "minimatch": "^10.2.6",
     "mongoose": "^9.10.3",
     "negotiator": "^1.1.0",
+    "nodemailer": "^10.1.7",
     "path-to-regexp": "^8.4.2",
     "picomatch": "^2.3.2",
     "proxy-addr": "^2.0.8",

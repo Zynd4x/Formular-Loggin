@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" defer></script> 
     <title>Login</title>
 </head>
 <body>
@@ -56,14 +56,30 @@
             </div>
             <div class="switchLane">
               <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" id="remember-me">
                 <span class="slider round"></span>
               </label>
-              <h3>Remember</h3>
-              <a href="#" class="forgotPw">Forgot password?</a>
+              <h3>Remember me</h3>
+              <a href="#" class="forgotPw" id="forgot-password-link">Forgot password?</a>
             </div>
             <input type="submit" value="SIGN IN" class="submit">
           </form>
+          <div id="reset-modal" class="modal-overlay hidden">
+            <div class="modal-content card">
+              <h3>Reset Password</h3>
+              <p>Geben Sie Ihre Email-Adresse ein. Wir senden Ihnen einen Link zum Zurücksetzen.</p>
+
+              <form id="forgot-password-form">
+                <div class="input-group">
+                  <input type="email" id="reset-email" placeholder="Email Adresse" required>
+                </div>
+                <div class="modal-actions">
+                  <button type="submit" class="btn">Link anfordern</button>
+                  <button type="button" id="cloase-modal-btn" class="btn-secondary">Abbrechen</button>
+                </div>
+              </form>
+            </div>
+          </div>
           <div class="card-switch-prompt">
             <p>Don't have an account? <label for="card-toggle" class="switch-btn">Sign Up</label></p>
           </div>

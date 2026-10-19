@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, forgotPassword, resetPassword } = require('../controllers/authController');
 const protect = require('../middleware/authMiddleware');
+
 
 
 //Öffentliche Route ohne Middleware
@@ -24,5 +25,8 @@ router.post('/logout', (req, res) => {
     res.clearCookie('token');
     res.json({ success: true, message: 'Erfolgreich ausgeloggt' });
 });
+
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password', resetPassword);
 
 module.exports = router;
