@@ -7,8 +7,8 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 
 //1. Middlewares
-app.use(cores({
-    origin: 'http://localhost:3000', //Frontend-URL
+app.use(cors({
+    origin: 'http://localhost:3000', // Deine Frontend-URL
     credentials: true // Erlaubt das Senden von Cookies über CORS
 }));
 
@@ -21,4 +21,4 @@ app.use(express.static(path.join(__dirname, '../public')));
 //3. API-Routen einbinden
 app.use('/api', authRoutes);
 
-module.exports = app;
+module.exports = app; 

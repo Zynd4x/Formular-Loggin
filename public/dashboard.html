@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Geschützter Bereich</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Willkommen im Dashboard</h1>
+            <button id="logout-btn" class="btn-logout">Abmelden</button>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="card">
+                <h2>Profilinformationen</h2>
+                <div id="loading" class="spinner">Lade Profil...</div>
+                <div id="profile-data" class="hidden">
+                    <p><strong>Benutzer-ID:</strong> <span id="user-id">-</span></p>
+                    <p><strong>Status:</strong> <span class="badge-active">Authentifiziert</span></p>
+                </div>
+                <div id="error-message" class="error-box hidden"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
