@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["master"] # Passe den Branch an, falls er bei dir 'master' heißt
+    branches: ["master"]
 
 permissions:
   contents: read
@@ -29,9 +29,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Hier trägst du den Pfad zu deinem Unterordner ein:
+          # Hier den Pfad zum Ordner angeben (z.B. './public')
           path: './public'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions-deploy-pages@v4
+        uses: actions/deploy-pages@v4
